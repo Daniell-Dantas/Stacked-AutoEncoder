@@ -1,246 +1,29 @@
-% Substituindo os valores por 4, sem normalizar e sem a classe "Normal".
-%Aqui, carregamos os valores das razões segundo Duval, vamos carregar os
-%valores dos gases em "valores", depois trata-los para tirar null, inf, e
-%colocar todos <=4 e depois atribuir as razões que queremos. Usaremos R2-R5
-%do DuvalNew
-
-%% Criando o xtreino - Aqui juntamos os dados de treino e validação
-valores = [305	538	0	101	157
-12	17.6	0	4.5	4.6
-43	50	0.5	12	27
-                      16.2	17	                       0.1	                       6.1	42
-60	73	                       0.3	19	22
-16	31	                       0.3	10	62
-58	77	                       0.1	18	88
-131	198	                       0.3	52	105
-17	28	                       0.4	23	94
-13	19	                       0.5	                       6.4	69
-26	28	                       0.9	11	31
-22	31	                       1.5	36	56
-27	71	                       2.8	58	68
-32	65	                       0.3	20	26
-37	55	                       0.3	17	21
-15	16	                       0.1	                       0.8	2
-12	17	                       0.5	                       1.3	                       2.3
-46	71	                       0.2	19	94
-5	42	                       0.1	                       4.2	                       8.1
-5	38	                       0.2	                       4.7	                       6.7
-7	                       9.8	                       0.2	                       1.9	                       2.3
-                      10.2	139	                       0.4	19	116
-                      29.9	129	                       0.1	72	123
-9	17	                       0.2	                       3.1	4
-11	13	                       0.2	                       1.6	                       5.1
-10	46	                       0.6	                       9.2	10
-20	100	                       0.1	20	150
-51	83	                       0.1	24	99
-20	37	                       0.1	                       4.2	                       7.6
-50	51	                       0.2	16	73
-20	49	                       0.1	                       6.3	                       9.9
-20	72	                       0.1	23	25
-20	42	                       0.1	                       4.6	                       9.1
-20	22	                       0.1	26	85
-110	150	                       0.1	50	110
-40	79	                       0.1	20	120
-24	62	                       0.3	63	79
-20	135	                       0.2	16	210
-20	86	                       0.1	26	43
-36	80	                       0.4	78	92
-43	65	                       0.1	67	76
-20	21	                       0.1	53	91
-20	37	                       0.1	                       4.7	                       8.9
-20	61	                       0.2	17	19
-20	33	                       0.1	                       3.9	                       6.5
-36	52	                       0.8	                       6.6	14
-19	32	                       0.5	                       3.6	                       6.9
-33	84	                       0.5	39	43
-22	51	                       0.5	46	27
-42	120	                       4.5	330	110
-1700	3580	135	2700	800
-5	                       7.4	                       0.1	                       2.5	                       1.1
-23	68	                       1.3	47	23
-25	65	                       0.4	60	31
-45	51	                       1.8	120	43
-45	51	                       1.8	120	43
-                       7.1	                       8.4	                       0.3	3	                       1.7
-20	23	                       0.7	23	6
-10	11	                       0.7	9	                       3.2
-10	14	                       0.6	                       8.5	                       3.2
-10	17	                       0.2	                       4.2	                       3.1
-11	12	                       0.7	11	                       4.1
-11	12	                       0.9	11	4
-25	53	                       1.3	35	16
-39	47	                       0.5	120	39
-39	47	                       0.5	120	39
-10	14	                       1.1	13	                       4.7
-10	13	                       1.1	12	                       4.3
-10	13	1	11	                       4.3
-10	13	                       0.7	11	4
-20	46	                       0.1	24	14
-35	42	                       2.1	22	14
-20	22	                       0.2	10	                       4.8
-11	12	                       0.8	11	                       4.1
-100	230	                       5.4	270	120
-20	24	                       0.1	60	16
-20	47	                       0.1	20	13
-200	700	0	500	200
-30	200	8	308	114
-465	3100	1	3360	1221
-495	1775	2	2480	326
-6709	10500	750	17700	1400
-290	966	57	1810	299
-101	184	10	243	32
-50	100	9	305	51
-3650	6730	191	9630	1570
-1040	2100	10	2720	579
-107	143	2	222	35
-78	259	0	640	117
-32930	2397	0	0	157
-37800	1740	8	8	249
-92600	10200	0	0	0
-9340	995	7	6	60
-350	0	144	574	0
-350	0	144	574	0
-6600	1000	19	2	38
-88	9	0	0.03	0
-2240	168	0	0	25
-4	1	52	7	2
-1900	285	7730	957	31
-35	6	482	26	3
-650	81	270	51	170
-210	22	7	6	6
-385	60	159	53	8
-4230	690	1180	196	5
-84	9	40	11	4
-1790	580	619	336	321
-57	24	30	27	2
-1000	500	500	400	1
-2240	157	45	45	90
-73	8	2	12	4
-5000	4000	2000	8000	2000
-2240	560	940	450	380
-117	16	58	18	5
-60	5	29	6	1
-890	110	700	84	3
-41	112	4536	254	0
-16000	4000	16000	8500	500
-1570	1110	1830	1780	175
-260	215	277	334	35
-13500	6110	4040	4510	212
-34	21	56	49	4
-420	250	800	530	41
-310	230	760	610	54
-10000	6730	10400	7330	345
-20	5	26	34	0.7
-23	13	15	14	                       3.7
-182	164	520	633	64
-87	17	94	120	                       9.7
-28	                       7.8	                       2.5	                       3.1	                       0.7
-20	12	40	38	                       1.2
-20	                       4.3	                       1.2	                       1.5	                       0.4
-20	                       5.6	34	41	                       0.8
-20	                       3.6	81	81	                       0.9
-20	                       7.7	                       1.5	                       1.7	                       0.5
-20	                       5.4	50	66	                       2.6
-20	                       9.2	24	26	                       2.3
-20	                       3.6	1	                       1.2	                       0.4
-20	                       4.4	                       2.1	                       2.5	                       0.6
-20	11	55	31	                       7.1
-56	14	35	52	                       1.6
-26	7	10	15	                       2.5
-32	                       6.7	18	29	                       4.6
-20	                       2.4	                       0.2	                       0.3	                       0.1
-20	                       2.6	26	36	                       0.3
-20	                       3.5	42	48	                       0.7
-20	                       4.5	18	27	                       0.6
-20	                       3.1	                       8.4	13	                       0.3
-20	                       5.7	53	80	                       2.7
-20	                       3.3	22	25	                       0.6
-20	                       7.9	                       1.5	                       2.2	                       0.7
-20	                       5.2	                       1.8	                       2.3	                       0.6
-73	25	85	100	                       4.8
-72	                       8.6	                       5.3	                       8.4	                       2.4
-20	                       7.7	                       3.7	                       4.5	                       1.1
-20	8	4	5	                       1.3
-17	                       9.7	                       6.4	5	                       1.4
-26	                       5.4	                       1.9	                       2.9	                       0.9
-25	                       3.6	                       2.4	                       2.9	                       0.5
-22	                       2.9	                       1.6	                       2.1	                       0.5
-29	17	29	13	                       1.9
-16	10	                       6.3	                       5.3	                       1.6
-30	19	27	13	2
-12	11	                       4.4	                       4.1	                       1.2
-18	                       5.7	                       1.2	                       1.3	                       0.5
-1000	680	650	620	55
-220	1660	0	1140	1880
-93	194	0	27	52
-                       7.8	140	                       0.1	16	135
-                       0.1	11	                       0.1	                       0.3	                       1.7
-                      10.7	31	                       0.6	                       7.6	70
-                       9.9	38	                       0.2	                       4.7	                       6.9
-                       5.5	36	                       0.2	                       5.8	                       7.2
-10	33	                       1.1	                       3.1	                       6.4
-                      10.5	32	                       0.1	11	65
-                      21.3	110	                       0.1	20	200
-                      29.8	30	                       0.1	23	97
-                      11.6	140	                       0.1	15	140
-12	25	                       0.1	7	15
-10	13	    0.1	25	7
-44	74	                       2.5	128	44
-                       3.6	                       6.7	                       0.1	                       2.3	2
-5	11	                       0.1	                       4.5	                       3.5
-                      33.9	36	                       1.6	78	28
-                      33.9	36	                       1.6	78	28
-                      33.6	42	                       1.5	66	17
-80	6129	0	2438	276
-507	1053	17	1440	297
-723	1988	32	3259	595
-416	695	0	867	74
-39	 1.7	0.1	 0.1	0.6
-33046	619	0	2	58
-40280	1069	1	1	1060
-60	10	4	4	4
-6870	1028	5500	900	79
-10092	5399	37565	6500	530
-24.3	15.7	29.8	11.2	6.4
-2240	360	828	169	25
-4480	560	896	403	380
-1500	395	323	395	28
-20000	13000	57000	29000	1850
-620	325	244	181	38
-62	16	63	65	                       1.8
-                      13.8	                       1.4	                       0.8	                       1.2	                       0.1
-                      48.3	33	282	169	21
-20	                       5.6	51	61	                       2.1
-110	25	110	150	14
-32	11	                       2.3	                       3.2	                       0.6
-25	                       5.4	                       8.2	                       8.6	1
-20	                       8.3	26	32	                       3.2
-150	120	340	390	30
-];
-
-% o vetor "valores" se torna uma réplica da tabela do Excel. Agora vamos
-% precisar fazer as razões e depois trata-las. A ordem é a seguinte:
+%% Criando o xtreino 
+valores = []; % Aqui entram os valores do banco de dados de treino
+ 
+% Agora vamos precisar fazer as razÃµes e depois trata-las. A ordem Ã© a %seguinte:
 % H2 - CH4 - C2H2 - C2H4 - C2H6
-
-%Como queremos as razões R2 e R5 de DuvalNew, temos que R2 = C2H2/C2H4, 
+ 
+%Como queremos as razÃµes R2 e R5 de (KIM et al., 2020), temos que 
+%R2 = C2H2/C2H4, 
 %R5 = C2H4/C2H6. Assim
-
+ 
 R2 = valores(:,3) ./ valores(:,4); %C2H2/C2H4
 R5 = valores(:,4) ./ valores(:,5); %C2H4/C2H6
-
-%Agora, precisamos criar o vetor de treino, concatenando as razões
+ 
+%Agora, precisamos criar o vetor de treino, concatenando as razÃµes
 xtreino = horzcat (R2,R5);
-
+ 
 %E agora precisamos tratar os valores
-
-
+ 
+ 
 %Performamos o seguinte: Para valores > 4, substitui por 4
-% Para divisão por zero, substitui por 4
+% Para divisÃ£o por zero, substitui por 4
 % Para 0/0, substitui por 0
-
+ 
 %Lidando com valores NaN - Ocorre quando temos 0/0
 xtreino(isnan(xtreino)) = 0;
-
+ 
 for i=1:numel(xtreino)
    if (xtreino(i) == Inf)%Lidando com valores Inf - Ocorre quando temos x/0, um numero qualquer por zero
         xtreino(i) = 4;
@@ -248,338 +31,41 @@ for i=1:numel(xtreino)
       xtreino(i) = 4;
     end
 end
-
+ 
 %Arrumamos o xtreino
 xtreino = xtreino';
-
-%% Criamos os valores de saída para o treino
-xsaida = [1
-1
-1
-1
-1
-1
-1
-1
-1
-1
-1
-1
-1
-1
-1
-1
-1
-1
-1
-1
-1
-1
-1
-1
-1
-1
-1
-1
-1
-1
-1
-1
-1
-1
-1
-1
-1
-1
-1
-1
-1
-1
-1
-1
-1
-1
-1
-1
-2
-2
-2
-2
-2
-2
-2
-2
-2
-2
-2
-2
-2
-2
-2
-2
-2
-2
-2
-2
-2
-2
-2
-2
-2
-2
-2
-2
-2
-2
-2
-2
-2
-2
-2
-2
-2
-2
-2
-2
-2
-3
-3
-3
-3
-3
-3
-3
-3
-3
-4
-4
-4
-4
-4
-4
-4
-4
-4
-4
-4
-4
-4
-4
-4
-4
-4
-4
-4
-4
-5
-5
-5
-5
-5
-5
-5
-5
-5
-5
-5
-5
-5
-5
-5
-5
-5
-5
-5
-5
-5
-5
-5
-5
-5
-5
-5
-5
-5
-5
-5
-5
-5
-5
-5
-5
-5
-5
-5
-5
-5
-5
-5
-5
-5
-5
-5
-5
-1
-1
-1
-1
-1
-1
-1
-1
-1
-1
-1
-1
-1
-2
-2
-2
-2
-2
-2
-2
-2
-2
-2
-2
-3
-3
-3
-4
-4
-4
-4
-4
-4
-5
-5
-5
-5
-5
-5
-5
-5
-5
-5
-5
-5
-];
+ 
+%% Criamos os valores de saÃ­da para o treino
+xsaida = []; % Aqui entram os valores das respectivas classes dos dados de treinamento
 xsaida = xsaida';
-
-
+ 
+ 
 %% Agora vamos repetir os processos para o vetor de testes, Criando xteste
-
-valores_teste = [                       6.2	                       6.6	                       0.2	                       0.7	                       3.1
-                      10.4	98	                       0.4	19	205
-                      21.7	41	                       0.7	24	86
-                       0.8	26	                       0.3	1	                       4.5
-1	25	                       0.1	                       0.7	                       4.3
-                       6.9	17	1	5	11
-                       4.9	31	                       0.3	38	40
-                       0.5	27	                       0.3	                       1.6	                       5.4
-                       0.5	22	                       0.3	1	                       3.6
-                       2.4	26	                       0.1	                       3.4	4
-5	                       8.6	                       0.2	11	13
-                      10.8	23	                       0.1	27	77
-13	14	                       0.1	                       8.2	35
-16	19	2	69	162
-50	200	1	10	225
-10	170	1	10	200
-20	21	                       0.2	                       8.6	                       7.9
-34	39	                       0.7	98	35
-20	22	                       0.3	                       4.4	                       4.2
-49	68	                       0.6	140	48
-20	57	                       0.1	55	33
-48	91	                       3.6	340	90
-98	160	                       0.3	140	47
-20	48	                       0.2	29	17
-231	3997	0	5584	1726
-100	230	5.4	270	120
-107	143	2	222	34
-860	1670	40	2050	30
-100	200	11	670	110
-53	83	10	144	31
-200	680	88	1600	190
-1050	2400	11	1800	370
-36036	4704	10	5	554
-8266	1061	0	0	22
-1950	123	2	2	38
-120	25	40	8	1
-6454	2313	6432	2159	121
-78	20	28	13	11
-305	100	541	161	33
-1230	163	692	233	27
-645	86	317	110	13
-95	10	39	11	0
-595	80	244	89	9
-1330	10	182	66	20
-543	120	1880	411	41
-2177	1049	705	440	207
-9474	4066	12997	6552	353
-441	207	261	224	43
-64	24	190	120	19
-22	3	5	3	1
-64	24	190	120	19
-138	65	103	112	9
-22	3	5	3	1
-                       5.3	                       2.8	                       1.6	                       1.6	                       0.3
-                       6.2	                       1.4	1	                       1.2	                       0.1
-                       3.3	                       1.2	                       0.4	                       0.5	                       0.1
-                       1.2	1	                       0.5	                       0.5	                       0.1
-                       7.2	                       4.3	106	78	1
-                      18.4	                       7.7	97	97	                       2.2
-5	3	11	16	1
-150	63	220	220	15
-57	19	28	35	14
-                      19.1	                       2.8	33	38	                       0.6
-24	                       4.4	13	15	                       0.9
-                      14.8	                       9.1	56	26	                       3.7
-6	                       2.8	24	36	                       0.1
-                      14.1	                       4.4	18	25	                       0.1
-                       3.5	                       2.9	                       1.4	                       1.5	                       0.5
-11	                       4.3	                       0.7	                       1.1	                       0.3
-                       7.1	                       2.6	                       2.7	                       2.7	                       0.5
-6	                       2.6	28	33	                       0.6
-6	                       1.3	                       1.5	                       1.8	                       0.2
-31	20	103	95	10
-13	                       7.6	20	30	                       2.2
-13	                       2.1	                       0.4	                       0.5	                       0.2
-14	                       7.8	42	26	                       2.8
-37	7	22	28	5
-                       6.1	                       5.6	                       3.8	                       2.4	                       0.5
-29	15	68	100	                       2.3
-15	                       1.7	                       0.5	                       0.6	                       0.1
-19	11	290	180	                       4.7
-74	25	120	140	14
-8	1	                       0.4	                       0.5	                       0.1
-22	7	67	68	                       2.5
-150	67	250	280	22
-];
-
-% o vetor "valores_teste" se torna uma réplica da tabela do Excel. Agora vamos
-% precisar fazer as razões e depois trata-las. A ordem é a seguinte:
+ 
+valores_teste = []; % Aqui entram os valores do banco de dados de teste
+ 
+% Agora vamos precisar fazer as razÃµes e depois trata-las. A ordem Ã© a seguinte:
 % H2 - CH4 - C2H2 - C2H4 - C2H6
-
-%Como queremos as razões R2 e R5 de DuvalNew, temos que R2 = C2H2/C2H4, 
+ 
+%Como queremos as razÃµes R2 e R5 de DuvalNew, temos que R2 = C2H2/C2H4, 
 %R5 = C2H4/C2H6. Assim
-
+ 
 R2_teste = valores_teste(:,3) ./ valores_teste(:,4); %C2H2/C2H4
 R5_teste = valores_teste(:,4) ./ valores_teste(:,5); %C2H4/C2H6
-
-%Agora, precisamos criar o vetor de treino, concatenando as razões
+ 
+%Agora, precisamos criar o vetor de treino, concatenando as razÃµes
 xteste = horzcat (R2_teste,R5_teste);
-
+ 
 %E agora precisamos tratar os valores
-
-
+ 
+ 
 %Performamos o seguinte: Para valores > 4, substitui por 4
-% Para divisão por zero, substitui por 4
+% Para divisÃ£o por zero, substitui por 4
 % Para 0/0, substitui por 0
-
+ 
 %Lidando com valores NaN - Ocorre quando temos 0/0
 xteste(isnan(xteste)) = 0;
-
+ 
 for i=1:numel(xteste)
    if (xteste(i) == Inf)%Lidando com valores Inf - Ocorre quando temos x/0, um numero qualquer por zero
         xteste(i) = 4;
@@ -587,410 +73,29 @@ for i=1:numel(xteste)
       xteste(i) = 4;
     end
 end
-
+ 
 %Arrumando xteste
 xteste = xteste';
-
-
+ 
+ 
 %% Criando desejado
-desejado = [1
-1
-1
-1
-1
-1
-1
-1
-1
-1
-1
-1
-1
-1
-1
-1
-2
-2
-2
-2
-2
-2
-2
-2
-2
-2
-2
-2
-2
-2
-2
-2
-3
-3
-3
-4
-4
-4
-4
-4
-4
-4
-4
-4
-4
-4
-5
-5
-5
-5
-5
-5
-5
-5
-5
-5
-5
-5
-5
-5
-5
-5
-5
-5
-5
-5
-5
-5
-5
-5
-5
-5
-5
-5
-5
-5
-5
-5
-5
-5
-5
-5
-5
-5
-5
-];
-
+desejado = []; % Aqui entram os valores das respectivas classes dos dados de teste
+ 
 desejado = desejado';
-
-
-%% Criando os vetores no padrão Softmax
-
-xtreino_softmax = [1	0	0	0	0
-1	0	0	0	0
-1	0	0	0	0
-1	0	0	0	0
-1	0	0	0	0
-1	0	0	0	0
-1	0	0	0	0
-1	0	0	0	0
-1	0	0	0	0
-1	0	0	0	0
-1	0	0	0	0
-1	0	0	0	0
-1	0	0	0	0
-1	0	0	0	0
-1	0	0	0	0
-1	0	0	0	0
-1	0	0	0	0
-1	0	0	0	0
-1	0	0	0	0
-1	0	0	0	0
-1	0	0	0	0
-1	0	0	0	0
-1	0	0	0	0
-1	0	0	0	0
-1	0	0	0	0
-1	0	0	0	0
-1	0	0	0	0
-1	0	0	0	0
-1	0	0	0	0
-1	0	0	0	0
-1	0	0	0	0
-1	0	0	0	0
-1	0	0	0	0
-1	0	0	0	0
-1	0	0	0	0
-1	0	0	0	0
-1	0	0	0	0
-1	0	0	0	0
-1	0	0	0	0
-1	0	0	0	0
-1	0	0	0	0
-1	0	0	0	0
-1	0	0	0	0
-1	0	0	0	0
-1	0	0	0	0
-1	0	0	0	0
-1	0	0	0	0
-1	0	0	0	0
-0	1	0	0	0
-0	1	0	0	0
-0	1	0	0	0
-0	1	0	0	0
-0	1	0	0	0
-0	1	0	0	0
-0	1	0	0	0
-0	1	0	0	0
-0	1	0	0	0
-0	1	0	0	0
-0	1	0	0	0
-0	1	0	0	0
-0	1	0	0	0
-0	1	0	0	0
-0	1	0	0	0
-0	1	0	0	0
-0	1	0	0	0
-0	1	0	0	0
-0	1	0	0	0
-0	1	0	0	0
-0	1	0	0	0
-0	1	0	0	0
-0	1	0	0	0
-0	1	0	0	0
-0	1	0	0	0
-0	1	0	0	0
-0	1	0	0	0
-0	1	0	0	0
-0	1	0	0	0
-0	1	0	0	0
-0	1	0	0	0
-0	1	0	0	0
-0	1	0	0	0
-0	1	0	0	0
-0	1	0	0	0
-0	1	0	0	0
-0	1	0	0	0
-0	1	0	0	0
-0	1	0	0	0
-0	1	0	0	0
-0	1	0	0	0
-0	0	1	0	0
-0	0	1	0	0
-0	0	1	0	0
-0	0	1	0	0
-0	0	1	0	0
-0	0	1	0	0
-0	0	1	0	0
-0	0	1	0	0
-0	0	1	0	0
-0	0	0	1	0
-0	0	0	1	0
-0	0	0	1	0
-0	0	0	1	0
-0	0	0	1	0
-0	0	0	1	0
-0	0	0	1	0
-0	0	0	1	0
-0	0	0	1	0
-0	0	0	1	0
-0	0	0	1	0
-0	0	0	1	0
-0	0	0	1	0
-0	0	0	1	0
-0	0	0	1	0
-0	0	0	1	0
-0	0	0	1	0
-0	0	0	1	0
-0	0	0	1	0
-0	0	0	1	0
-0	0	0	0	1
-0	0	0	0	1
-0	0	0	0	1
-0	0	0	0	1
-0	0	0	0	1
-0	0	0	0	1
-0	0	0	0	1
-0	0	0	0	1
-0	0	0	0	1
-0	0	0	0	1
-0	0	0	0	1
-0	0	0	0	1
-0	0	0	0	1
-0	0	0	0	1
-0	0	0	0	1
-0	0	0	0	1
-0	0	0	0	1
-0	0	0	0	1
-0	0	0	0	1
-0	0	0	0	1
-0	0	0	0	1
-0	0	0	0	1
-0	0	0	0	1
-0	0	0	0	1
-0	0	0	0	1
-0	0	0	0	1
-0	0	0	0	1
-0	0	0	0	1
-0	0	0	0	1
-0	0	0	0	1
-0	0	0	0	1
-0	0	0	0	1
-0	0	0	0	1
-0	0	0	0	1
-0	0	0	0	1
-0	0	0	0	1
-0	0	0	0	1
-0	0	0	0	1
-0	0	0	0	1
-0	0	0	0	1
-0	0	0	0	1
-0	0	0	0	1
-0	0	0	0	1
-0	0	0	0	1
-0	0	0	0	1
-0	0	0	0	1
-0	0	0	0	1
-0	0	0	0	1
-1	0	0	0	0
-1	0	0	0	0
-1	0	0	0	0
-1	0	0	0	0
-1	0	0	0	0
-1	0	0	0	0
-1	0	0	0	0
-1	0	0	0	0
-1	0	0	0	0
-1	0	0	0	0
-1	0	0	0	0
-1	0	0	0	0
-1	0	0	0	0
-0	1	0	0	0
-0	1	0	0	0
-0	1	0	0	0
-0	1	0	0	0
-0	1	0	0	0
-0	1	0	0	0
-0	1	0	0	0
-0	1	0	0	0
-0	1	0	0	0
-0	1	0	0	0
-0	1	0	0	0
-0	0	1	0	0
-0	0	1	0	0
-0	0	1	0	0
-0	0	0	1	0
-0	0	0	1	0
-0	0	0	1	0
-0	0	0	1	0
-0	0	0	1	0
-0	0	0	1	0
-0	0	0	0	1
-0	0	0	0	1
-0	0	0	0	1
-0	0	0	0	1
-0	0	0	0	1
-0	0	0	0	1
-0	0	0	0	1
-0	0	0	0	1
-0	0	0	0	1
-0	0	0	0	1
-0	0	0	0	1
-0	0	0	0	1
-];
+ 
+ 
+%% Criando os vetores no padrÃ£o Softmax
+ 
+xtreino_softmax = []; % Aqui entram os valores das respectivas classes dos dados de treinamento, no formato de oâ€™s e 1â€™s, ex: [00001]
 xtreino_softmax = xtreino_softmax';
-
-xteste_softmax = [1	0	0	0	0
-1	0	0	0	0
-1	0	0	0	0
-1	0	0	0	0
-1	0	0	0	0
-1	0	0	0	0
-1	0	0	0	0
-1	0	0	0	0
-1	0	0	0	0
-1	0	0	0	0
-1	0	0	0	0
-1	0	0	0	0
-1	0	0	0	0
-1	0	0	0	0
-1	0	0	0	0
-1	0	0	0	0
-0	1	0	0	0
-0	1	0	0	0
-0	1	0	0	0
-0	1	0	0	0
-0	1	0	0	0
-0	1	0	0	0
-0	1	0	0	0
-0	1	0	0	0
-0	1	0	0	0
-0	1	0	0	0
-0	1	0	0	0
-0	1	0	0	0
-0	1	0	0	0
-0	1	0	0	0
-0	1	0	0	0
-0	1	0	0	0
-0	0	1	0	0
-0	0	1	0	0
-0	0	1	0	0
-0	0	0	1	0
-0	0	0	1	0
-0	0	0	1	0
-0	0	0	1	0
-0	0	0	1	0
-0	0	0	1	0
-0	0	0	1	0
-0	0	0	1	0
-0	0	0	1	0
-0	0	0	1	0
-0	0	0	1	0
-0	0	0	0	1
-0	0	0	0	1
-0	0	0	0	1
-0	0	0	0	1
-0	0	0	0	1
-0	0	0	0	1
-0	0	0	0	1
-0	0	0	0	1
-0	0	0	0	1
-0	0	0	0	1
-0	0	0	0	1
-0	0	0	0	1
-0	0	0	0	1
-0	0	0	0	1
-0	0	0	0	1
-0	0	0	0	1
-0	0	0	0	1
-0	0	0	0	1
-0	0	0	0	1
-0	0	0	0	1
-0	0	0	0	1
-0	0	0	0	1
-0	0	0	0	1
-0	0	0	0	1
-0	0	0	0	1
-0	0	0	0	1
-0	0	0	0	1
-0	0	0	0	1
-0	0	0	0	1
-0	0	0	0	1
-0	0	0	0	1
-0	0	0	0	1
-0	0	0	0	1
-0	0	0	0	1
-0	0	0	0	1
-0	0	0	0	1
-0	0	0	0	1
-0	0	0	0	1
-0	0	0	0	1
-];
+ 
+xteste_softmax = []; % Aqui entram os valores das respectivas classes dos dados de teste, no formato de oâ€™s e 1â€™s, ex: [00001]
 xteste_softmax = xteste_softmax';
-
-
+ 
+ 
 %% Criando a Stacked Autoencoder
+ 
 
-% Aqui será variado o número de Autoencoders
 autoenc1 = trainAutoencoder(xtreino,4, ...
     'MaxEpochs',600, ...
     'L2WeightRegularization',0.004, ...
@@ -998,7 +103,7 @@ autoenc1 = trainAutoencoder(xtreino,4, ...
     'SparsityProportion',0.15, ...
     'ScaleData', false);
 feat1 = encode(autoenc1,xtreino);
-
+ 
 autoenc2 = trainAutoencoder(feat1,5, ...
     'MaxEpochs',600, ...
     'L2WeightRegularization',0.004, ...
@@ -1006,18 +111,19 @@ autoenc2 = trainAutoencoder(feat1,5, ...
     'SparsityProportion',0.15, ...
     'ScaleData', false);
 feat2 = encode(autoenc2,feat1);
-
+ 
 softnet = trainSoftmaxLayer(feat2,xtreino_softmax,'MaxEpochs',400);
-%view(softnet)
-
+view(softnet)
+ 
 stackednet = stack(autoenc1,autoenc2,softnet);
-%view(stackednet)
-
+view(stackednet)
+ 
 %RESULTADO SEM FINE TUNING
 %y = stackednet(xteste);
 %plotconfusion(xteste_softmax,y);
-
+ 
 %RESULTADO COM FINE TUNING
 stackednet = train(stackednet,xtreino,xtreino_softmax);
 y = stackednet(xteste);
 plotconfusion(xteste_softmax,y);
+
